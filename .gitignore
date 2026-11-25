@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env.*.local
+*.log
+*.tsbuildinfo
+.DS_Store
+.vercel
+# motor de pesquisa (Python)
+__pycache__/
+*.pyc
+.pytest_cache/
+engine/data/
+engine/.venv/
