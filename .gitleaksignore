@@ -1,0 +1,2 @@
+# Token falso usado no teste de mascaramento da auditoria (T-012); não é credencial real.
+150e299f9bccdbaf4551be51d502b9908dca294d:engine/tests/test_t012_audit.py:generic-api-key:27
