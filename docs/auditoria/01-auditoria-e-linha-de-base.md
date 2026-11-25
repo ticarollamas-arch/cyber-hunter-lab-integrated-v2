@@ -4,6 +4,8 @@ Data: 2026-11-25 · Commit auditado: `359f42c` (branch `main`) · Tag de recuper
 
 ## 1. Como restaurar o estado anterior
 
+> A tag foi criada no clone de trabalho, mas o ambiente não tinha permissão para enviá-la ao GitHub. O ponto de recuperação é o commit `359f42c`, que continua sendo o topo de `main`. Para publicar a tag: `git tag -a baseline-2026-11-25 359f42c -m "linha de base" && git push origin baseline-2026-11-25`.
+
 ```bash
 git checkout baseline-2026-11-25      # inspecionar o estado original
 git checkout -b restaura baseline-2026-11-25   # recomeçar a partir dele
