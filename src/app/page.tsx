@@ -102,9 +102,12 @@ const SKILL_CATEGORIES = [
   "Arquitetura & Clean Code",
 ];
 
+// Endereço público (HTTPS) do painel do motor de pesquisa — ver engine/README.md
+const RESEARCH_ENGINE_URL = (process.env.NEXT_PUBLIC_RESEARCH_ENGINE_URL || "").replace(/\/$/, "");
+
 export default function Home() {
   const [hydrated, setHydrated] = useState(false);
-  const [tab, setTab] = useState<"chat" | "reverse" | "security" | "skills" | "apresentacao">("chat");
+  const [tab, setTab] = useState<"chat" | "reverse" | "security" | "research" | "skills" | "apresentacao">("chat");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   // Chats
@@ -891,6 +894,13 @@ Entregue: resumo executivo, achados priorizados, evidências, impacto potencial,
               Laboratório de Segurança
             </button>
             <button
+              className={tab === "research" ? "active" : ""}
+              onClick={() => setTab("research")}
+            >
+              <Zap size={14} />
+              Pesquisa Bug Bounty
+            </button>
+            <button
               className={tab === "skills" ? "active" : ""}
               onClick={() => setTab("skills")}
             >
@@ -1018,6 +1028,17 @@ Entregue: resumo executivo, achados priorizados, evidências, impacto potencial,
               >
                 <ShieldCheck size={15} />
                 <span>Cyber Hunter Lab</span>
+              </button>
+
+              <button
+                className={`drawer-item ${tab === "research" ? "active" : ""}`}
+                onClick={() => {
+                  setTab("research");
+                  setDrawerOpen(false);
+                }}
+              >
+                <Zap size={15} />
+                <span>Pesquisa Bug Bounty</span>
               </button>
 
               <button
@@ -1583,6 +1604,46 @@ Entregue: resumo executivo, achados priorizados, evidências, impacto potencial,
               <h3><Layers size={16} /> Escopo do laboratório</h3>
               <p style={{ color: "var(--text-muted)", fontSize: 12.5, margin: 0 }}>A auditoria inicial cobre padrões estáticos em código, segredos acidentalmente incluídos, dependências declaradas, Docker, Kubernetes, Terraform e presença de configuração Vercel. Próximas etapas podem adicionar análise de lockfiles com OSV, Trivy, Semgrep e execução isolada na VPS.</p>
             </div>
+          </div>
+        )}
+
+        {/* ============================================================
+            TAB: PESQUISA BUG BOUNTY (motor Python em engine/, painel próprio)
+            ============================================================ */}
+        {tab === "research" && (
+          <div className="dark-tool-page">
+            <div>
+              <h1 style={{ fontSize: "23px", color: "#ffffff", display: "flex", alignItems: "center", gap: "10px", margin: "0 0 6px" }}>
+                <Zap size={23} style={{ color: "var(--accent-text)" }} /> Pesquisa Bug Bounty
+              </h1>
+              <p style={{ color: "var(--text-muted)", margin: 0, fontSize: "13.5px" }}>
+                Motor de pesquisa autorizada: escopo obrigatório, limite de requisições, interrupção, aprovação humana para testes ativos,
+                recon, inventário, web/API, SAST, SCA/CVE, DAST, CWE/CVSS/WSTG, IA para triagem e relatórios com evidências.
+              </p>
+            </div>
+            {RESEARCH_ENGINE_URL ? (
+              <div className="dark-tool-card" style={{ padding: 0, overflow: "hidden" }}>
+                <div style={{ display: "flex", justifyContent: "flex-end", padding: "8px 12px" }}>
+                  <a href={RESEARCH_ENGINE_URL} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-text)", fontSize: "12.5px" }}>
+                    Abrir o painel em nova aba <ExternalLink size={12} />
+                  </a>
+                </div>
+                <iframe
+                  src={RESEARCH_ENGINE_URL}
+                  title="Painel de pesquisa CyberHuntLab"
+                  style={{ width: "100%", height: "78vh", border: 0, background: "#07090f" }}
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            ) : (
+              <div className="dark-tool-card">
+                <h3><AlertCircle size={16} /> Motor de pesquisa não configurado</h3>
+                <p style={{ color: "var(--text-muted)", fontSize: "12.5px", margin: 0 }}>
+                  Rode o motor na VPS (<code>engine/README.md</code>) e defina <code>NEXT_PUBLIC_RESEARCH_ENGINE_URL</code> com o endereço HTTPS do painel.
+                  No motor, defina <code>CHL_FRAME_ANCESTORS</code> com o domínio deste app para permitir a incorporação.
+                </p>
+              </div>
+            )}
           </div>
         )}
 
