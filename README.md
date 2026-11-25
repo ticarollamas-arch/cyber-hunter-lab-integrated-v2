@@ -8,6 +8,12 @@ Plataforma web em **Next.js** que combina a bancada de desenvolvimento **OpenUI 
 
 ## Recursos
 
+### Pesquisa Bug Bounty (aba Pesquisa Bug Bounty · motor em `engine/`)
+
+Motor em Python, executado na VPS, para pesquisa de vulnerabilidades em programas de Bug Bounty autorizados. Você informa a URL do alvo, cadastra o escopo e acompanha pelo painel: reconhecimento, inventário de ativos e tecnologias, análise web/API, SAST, SCA com correlação CVE (OSV), DAST com aprovação humana, CWE, CVSS 3.1, casos WSTG, triagem por IA, deduplicação, sinais de falso positivo e relatórios (Markdown, PDF, JSON, SARIF) só com achados validados.
+
+Controles obrigatórios: escopo versionado com negação por padrão, limite de requisições por programa, interrupção a qualquer momento, aprovação com confirmação explícita para testes invasivos e trilha de auditoria com cadeia de hash. Instalação, variáveis e testes em [engine/README.md](engine/README.md); auditoria e evidências em [docs/auditoria](docs/auditoria).
+
 ### Auditoria estática de ZIP (aba Cyber Hunter Lab)
 
 - Aponta possíveis segredos expostos, validação TLS desativada, execução dinâmica, CORS permissivo, modo debug, configurações de Docker, Kubernetes, Terraform e Vercel, além das dependências declaradas.
