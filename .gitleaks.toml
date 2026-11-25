@@ -1,0 +1,9 @@
+# Configuração do Gitleaks: regras padrão + exceção para a amostra deliberada do teste T-002.
+# O arquivo engine/tests/fixtures/sast/vuln/settings.py contém uma chave AWS FALSA, criada para
+# provar que o SAST detecta segredos. Nada fora desse diretório é liberado.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "amostras deliberadamente vulneráveis usadas nos testes do SAST"
+paths = ['''^engine/tests/fixtures/sast/''']
