@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CyberHuntLab — Pesquisa autorizada</title>
+  <link rel="stylesheet" href="/panel/style.css">
+  <script src="/panel/app.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="dot"></span> CyberHuntLab <small>motor de pesquisa autorizada</small></div>
+    <div id="who" class="who"></div>
+  </header>
+
+  <section id="login" class="card narrow hidden">
+    <h2>Entrar</h2>
+    <p class="muted">Use o token gerado com <code>python -m chl_engine.cli create-user</code>. Ele fica só nesta aba (sessionStorage).</p>
+    <form id="login-form">
+      <label>Token<input id="token" type="password" autocomplete="off" required></label>
+      <button type="submit">Entrar</button>
+    </form>
+    <p id="login-error" class="error"></p>
+  </section>
+
+  <main id="app" class="layout hidden">
+    <aside class="side">
+      <div class="side-head"><h3>Programas</h3><button id="new-program" class="ghost small">+ novo</button></div>
+      <ul id="programs" class="list"></ul>
+      <h3>Pesquisas recentes</h3>
+      <ul id="jobs" class="list"></ul>
+      <h3>Ferramentas</h3>
+      <ul id="tools" class="list tools"></ul>
+    </aside>
+    <section id="content" class="content">
+      <div class="card">
+        <h2>Comece por um programa</h2>
+        <p class="muted">Cadastre o programa de bug bounty e o escopo permitido. Nenhuma requisição sai para um alvo fora do escopo, e testes ativos só rodam depois da sua aprovação.</p>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+</body>
+</html>

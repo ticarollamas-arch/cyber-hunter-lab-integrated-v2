@@ -48,6 +48,7 @@ class Settings:
     ai_max_tokens_request: int = field(default_factory=lambda: _int("CHL_AI_MAX_TOKENS_REQUEST", 1500))
     ai_daily_tokens_per_user: int = field(default_factory=lambda: _int("CHL_AI_DAILY_TOKENS_PER_USER", 60_000))
     ai_daily_tokens_global: int = field(default_factory=lambda: _int("CHL_AI_DAILY_TOKENS_GLOBAL", 300_000))
+    frame_ancestors: list = field(default_factory=lambda: [o for o in os.environ.get("CHL_FRAME_ANCESTORS", "").split() if o.startswith("https://") or o.startswith("http://localhost")])
     # Retenção
     audit_retention_days: int = field(default_factory=lambda: _int("CHL_AUDIT_RETENTION_DAYS", 365))
 
